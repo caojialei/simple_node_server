@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{ width: 900px; margin: 0 auto; background-color: #eee; }
+        .left{ min-width: 200px; float: left; background-color: yellow; height: 60px;}
+        /*.bfc { background-color: green; }*/
+        .right{ display: inline-block;background-color: red;  height: 60px;}
+        .right{ display: inline-block; background-color: red;  height: 60px;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left">我是自适应宽度盒子，min-width:200px</div>
+        <div class="bfc">
+          <div class="right">我是自适应宽度，铺满剩下宽度</div>
+          <!--<input type="text">-->
+        </div>
+    </div>
+</body>
+</html>

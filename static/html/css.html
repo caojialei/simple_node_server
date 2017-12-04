@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding: 0;margin: 0}
+        .box,.box1{width: 100%;border: 1px solid;padding: 10px 0;font-size: 0;margin: 20px 0}
+        .box span,.box input,.box button{display: inline-block;height: 30px;border: 0;font-size: 12px;}
+        .box span{float: left;}
+        .box input{background: rgba(0,0,0,.1)}
+        .box button{height: 30px;border: 0;background: pink;overflow: hidden;}
+        .box1 div{height: 30px;font-size: 12px;}
+        .box1 .b1{background: pink;}
+        .box1 .b2{background: blue;}
+        .b1{
+            /*min-width:200px;*/
+            /*float:left;*/
+            overflow:hidden;
+            float:right;
+        }
+        .b2{
+            /*overflow:hidden;*/
+
+            min-width:200px;
+
+
+        }
+        input{width: 100%}
+        .inner{width: 100%}
+    </style>
+</head>
+<body>
+<div class="box">
+    <span><input value="s"></span>
+    <button type="button">获取验证码</button>
+</div>
+
+<div class="box1">
+    <div class="b1"><div class="inner">as</div><!--<button>快递费激活快递费</button>--></div>
+    <div class="b2"><input type="text"></div>
+</div>
+</body>
+</html>

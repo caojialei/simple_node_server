@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="data-spm" content="3.1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>兑换畅由权益卡</title>
+    <link rel="stylesheet" href="../css/mui.css" />
+    <link rel="stylesheet" href="../css/rights_interest.css?v=20171123">
+</head>
+<body data-sharemode="true" data-spm="100">
+<div>
+    <div class="content">
+        <div class="wrapper wrapper-card">
+            <h1><span>移动兑入积分：</span><i id="ycScore">-</i></h1>
+            <div class="card-items" data-spm="113">
+                <ul></ul>
+            </div>
+        </div>
+        <div class="wrapper">
+            <h3 class="title t1">兑换权益卡数量</h3>
+            <div class="wrapper-count">
+                <button id="cardDecrease" class="btn btn-decrease" type="button"></button>
+                <input id="cardCount" class="cardcount" type="number" value="1">
+                <button id="cardAdd" class="btn btn-add" type="button"></button>
+            </div>
+        </div>
+        <div class="wrapper">
+            <h3 class="title t2">兑换说明</h3>
+            <ul class="explain">
+                <li>1.权益卡100积分起兑</li>
+                <li>2.权益卡兑换后不可退回</li>
+                <li>3.每个用户可以购买多份权益卡</li>
+                <li>4.权益卡只限移动兑入积分兑换</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <div>消耗：<span id="consumeScore">-</span>移动兑入积分</div>
+        <button id="confirm" type="button" data-spm="116">确认兑换</button>
+    </div>
+</div>
+
+<script src="../js/browser.js?v=20171123"></script>
+<script src="../js/template.js"></script>
+<script src="../js/mui.js"></script>
+<script src="../js/common.js"></script>
+
+<script src="../js/rights_interest.js?v=20171123"></script>
+
+<!--<script>-->
+    <!--window._shareData = {-->
+        <!--title : {-->
+            <!--wechat:'畅由平台|移动权益卡，超值权益等你来兑',-->
+            <!--othTitle:'畅由平台|移动权益卡，超值权益等你来兑'-->
+        <!--},-->
+        <!--content : '兑换移动权益卡，立享等额畅由积分+超值权益礼包',-->
+        <!--imageurl : location.origin + '/rightsInterest/img/ex_share_350_350.jpg',-->
+        <!--shareurl : location.origin + '/rightsInterest/share.html'-->
+    <!--};-->
+
+    <!--if (!browserUtil.jfmore) {-->
+        <!--wxshare();-->
+        <!--setShareInfo({-->
+            <!--title : window._shareData.title.othTitle,-->
+            <!--summary : window._shareData.content,-->
+            <!--pic : window._shareData.imageurl,-->
+            <!--url : window._shareData.shareurl-->
+        <!--});-->
+    <!--}-->
+    <!--spm.push(['_trackPageview']);-->
+<!--</script>-->
+</body>
+</html>
