@@ -1,12 +1,13 @@
 (function () {
-    // 判断是否登陆
-    // var login_token = cookieUtil.get('login_token');
-    // if (login_token == '') {
-    //     // location.href = '/login/getlogincode.htm?callback='+ encodeURIComponent(location.href);
-    //     userUtil.checkLogin(location.href);
-    // }
+   // 判断是否登陆
+   //  var login_token = cookieUtil.get('login_token');
+   //  if (login_token == '') {
+   //      // location.href = '/login/getlogincode.htm?callback='+ encodeURIComponent(location.href);
+   //      userUtil.checkLogin(location.href);
+   //  }
 
-    var hidemobileid,cmccscore,score,cardid,code,countdown,mobileOperators;
+
+    var cardItems,cardSelected,hidemobileid,cmccscore,score,cardid,code,countdown,mobileOperators;
     var cardnumber = 1;
     var login_token = '9f3d9bf5-8e53-42f6-98ae-19bfd2117776';
 
@@ -23,9 +24,9 @@
         amount--;
     }
     //手机运营商判断
-    var isChinaMobile = /^134[*]\*{4}\d{4}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])\*{4}\d{4}$/; //移动方面最新答复
-    var isChinaUnion = /^(?:13[0-2]|145|15[56]|176|18[56])\*{4}\d{4}$/; //向联通微博确认并未回复
-    var isChinaTelcom = /^(?:133|153|177|18[019])\*{4}\d{4}$/; //1349号段 电信方面没给出答复，视作不存在
+    var isChinaMobile = /^134[*]\*{4}\d{4}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])|198\*{4}\d{4}$/; //移动
+    var isChinaUnion = /^(?:13[0-2]|145|15[56]|176|18[56]|166)\*{4}\d{4}$/; //联通
+    var isChinaTelcom = /^(?:133|153|177|18[019]|199)\*{4}\d{4}$/; //电信
     var isOtherTelphone = /^170\*{4}\d{4}$/;//其他运营商
     var utils = {
         checkMobile: function(telphone){
@@ -67,6 +68,7 @@
         }
     };
 
+
     //获取权益卡列表
     ajaxUtil.loadData({
         type: 'post',
@@ -75,25 +77,25 @@
             login_token: login_token
         },
         onSuccess: function (data) {
-            var items = data.cards;
-            var cardType = ['钻石权益卡','铂金权益卡','黄金权益卡','青铜权益卡'];
-            for(var i = 0;i<items.length;i++){
-                let j = 0;
-                for (;j < cardType.length ;j++) {
-                    if (cardType[j] == items[i].cardname){
-                        break;
-                    }
-                }
-                var html = $('<li class="card-item" cardid="c' + items[i].cardid+'" score="s'+ items[i].score+'" cardname="'+items[i].cardname+'" data-spm="'+ (i + 1 ) +'"><img src="../img/ex_card' + (j+1) + '.png"></li>');
+            cardItems = data.cards;
+            for(var i = 0;i < cardItems.length;i++){
+                //todo:图片地址待更改
+                var html = $('<li class="card-item" data-spm="'+ (i + 1 ) +'"><img src="../img/ex_card' + cardItems[i].cardid + '.png"></li>');
+                // var html = $('<li class="card-item" cardid="c' + items[i].cardid+'" score="s'+ items[i].score+'" cardname="'+items[i].cardname+'" data-spm="'+ (i + 1 ) +'"><img src="img/ex_card' + (j+1) + '.png"></li>');
+
                 $(".card-items ul").append(html)
             }
             $($(".card-item")[0]).addClass("on");
             hidemobileid = data.hidemobileid;
             cmccscore = data.cmccscore;
-            score = data.cards[0].score;
+            cardSelected = cardItems[0];
+            cardname = cardSelected.cardname;
+            cardid = cardSelected.cardid;
+            score = cardSelected.score;
+
             $("#consumeScore").text(score);
             $("#ycScore").text(cmccscore);
-            mobileOperators = utils.checkMobile(data.hidemobileid).msg;
+            mobileOperators = utils.checkMobile(hidemobileid).msg;
         },
         onError: function () {
             mobileOperators = '';
@@ -120,12 +122,18 @@
         $("#confirm").removeAttr("disabled");
         $(".card-item").removeClass("on");
         $(this).addClass("on");
-        score = $(this).attr("score").split("s")[1];
+        // score = $(this).attr("score").split("s")[1];
+        var i = $(this).index();
+        console.log(cardItems[i]);
+        cardSelected = cardItems[i];
+        score = cardSelected.score;
+        cardname = cardSelected.cardname;
         $("#consumeScore").text(score);
 
         //重置输入框数值
-        $("#cardCount").val(1);
-        $("#cardDecrease").css({"opacity":.4});
+        // $("#cardCount").val(1);
+        mui(".mui-numbox").numbox().setValue(1)
+        // $("#cardDecrease").css({"opacity":.4});
     });
     $(".card-item").click(function () {
         //spm
@@ -163,42 +171,63 @@
     });
 
     //监听输入框数值变化
+    // $("#cardCount").bind("input propertychange change",function(){
+    //     $(this).val($(this).val().slice(0,5));
+    //     cardnumber = $(this).val();
+    //     if(cardnumber.length == 1){ //输入个位数
+    //         cardnumber = cardnumber.replace(/[^1-9]/g,'');
+    //         $(this).val(cardnumber);
+    //         if(cardnumber == 0) {
+    //             $(this).val('')
+    //         }
+    //         if(cardnumber == 1){
+    //             $("#cardDecrease").css({"opacity":.4})
+    //         }
+    //     }else{
+    //         cardnumber = cardnumber.replace(/\D/g,'');
+    //         $(this).val(cardnumber);
+    //         if(cardnumber == 1){
+    //             $("#cardDecrease").css({"opacity":.4})
+    //         }else{
+    //             $("#cardDecrease").css({"opacity":1})
+    //         }
+    //     }
+    //
+    //     if(cardnumber == 0){
+    //         $("#cardDecrease").css({"opacity":.4});
+    //         $("#confirm").attr("disabled",true)
+    //     }else {
+    //         $("#confirm").removeAttr("disabled");
+    //     }
+    //     $("#consumeScore").text(cardnumber * score);
+    // });
     $("#cardCount").bind("input propertychange change",function(){
         $(this).val($(this).val().slice(0,5));
         cardnumber = $(this).val();
         if(cardnumber.length == 1){ //输入个位数
             cardnumber = cardnumber.replace(/[^1-9]/g,'');
             $(this).val(cardnumber);
-            if(cardnumber == 0) {
-                $(this).val('')
-            }
-            if(cardnumber == 1){
-                $("#cardDecrease").css({"opacity":.4})
-            }
-        }else{
-            cardnumber = cardnumber.replace(/\D/g,'');
-            $(this).val(cardnumber);
-            if(cardnumber == 1){
-                $("#cardDecrease").css({"opacity":.4})
-            }else{
-                $("#cardDecrease").css({"opacity":1})
+            if(cardnumber == 0 || cardnumber == ''){
+                $("#confirm").attr("disabled",true)
+            }else {
+                $("#confirm").removeAttr("disabled");
             }
         }
-
-        if(cardnumber == 0){
-            $("#cardDecrease").css({"opacity":.4});
-            $("#confirm").attr("disabled",true)
-        }else {
-            $("#confirm").removeAttr("disabled");
-        }
+        $("#consumeScore").text(cardnumber * score);
+    });
+    $("#cardCount").blur(function(){
+        cardnumber = $(this).val();
         $("#consumeScore").text(cardnumber * score);
     });
 
     //点击确定兑换按钮
     $("#confirm").click(function () {
-        console.log(cardnumber)
+        //清空动画
         clearInterval(countdown);
-        cardid = $(".card-item.on").attr("cardid").split("c")[1];
+
+        cardid = cardSelected.cardid;
+        console.log(cardid);
+        console.log(cardnumber);
         var ycScore = parseInt($("#ycScore").text());
         var consumeScore = parseInt($("#consumeScore").text());
         if(ycScore < consumeScore){ //移动畅由积分不足
@@ -212,12 +241,15 @@
             $(".mui-popup").addClass("notenough");
         }else{
             mui.prompt(mobileOperators + '手机号： ' + hidemobileid ,' ','请输入短信验证码',['取消','确定'],function (e) {
+                //todo:add
+                // $(".footer").css({"position":"fixed"});
                 $(".footer").css({"opacity":"1"});
                 clearInterval(countdown);
-                //todo:add
+                //todo:add取消
                 if(e.index == 0){
                     $('.mui-popup-input input').blur();
                 }
+                //确定
                 if(e.index == 1){
                     document.activeElement.blur();
                     //兑换积分
@@ -239,25 +271,21 @@
                         },
                         onSuccess: function (data) {
                             // 兑换成功
-                            // if(data.respCode == '0000'){
-                            //     var exchangedCard = $(".card-item.on").attr("cardname");
-                            //     sessionStorage.setItem('exchangedCard', exchangedCard);
-                            //     location.href = "/rightsInterest/success.html";
-                            // }
-
-                            console.log('兑换')
+                            if(data.respCode == '0000'){
+                                sessionStorage.setItem('exchangedCard', cardname);
+                                location.href = "/rightsInterest/success.html";
+                            }
                         },
                         onError: function (data) {
                             if(!data.respCode){
                                 mui.toast('输入短信验证码错误，请重新获取', { duration: '1000', type: 'div' });
                                 return false;
-                                // mui.alert('兑换失败，请重新兑换', '  ', '确定',null,'div');
-                                // $(".mui-popup").addClass("error");
                             }
                             //积分不足
                             if(data.respCode == '0002'){
                                 mui.alert('兑换失败，请重新兑换', '  ', '确定',null,'div');
                                 $(".mui-popup").addClass("error");
+                                return false;
                             }
                             //验证码不一致
                             if(data.respCode == '0003'){
@@ -273,6 +301,7 @@
             var html = '<button type="button" class="input-r" id="sendcode" data-spm="119">获取验证码</button>';
             $('.mui-popup-input input').after(html);
             $('.mui-popup-input input').blur();
+            // $('.mui-popup-input input').attr('maxlength',6);
         }
     });
 
@@ -288,16 +317,6 @@
                 amount = 60;
                 countdown = setInterval(CountDown, 1000);
                 mui.toast('验证码发送成功',{ duration:'1', type:'div' });
-                // function CountDown() {
-                //     $("#sendcode").attr("disabled", true);
-                //     $("#sendcode").text(amount+"秒后重新发送");
-                //     if (amount == 0) {
-                //         $("#sendcode").removeAttr("disabled");
-                //         $("#sendcode").text("发送验证码");
-                //         clearInterval(countdown);
-                //     }
-                //     amount--;
-                // }
             },
             onError: function (data) {
                 mui.alert(data.msg, '  ', '确定');
@@ -307,6 +326,8 @@
 
     //验证码输入框聚焦
     $("body").on("focus",".mui-popup.code input",function () {
+        //todo:add
         $(".footer").css({"opacity":"0"});
+        // $(".footer").css({"position":"relative"});
     });
 })();

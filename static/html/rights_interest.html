@@ -5,10 +5,17 @@
     <meta name="data-spm" content="3.1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>兑换畅由权益卡</title>
-    <link rel="stylesheet" href="../css/mui.css" />
+    <link rel="stylesheet" href="../css/mui/mui.css" />
     <link rel="stylesheet" href="../css/rights_interest.css?v=20171123">
 </head>
 <body data-sharemode="true" data-spm="100">
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">兑换畅由权益卡</h1>
+    <!--<a href="javascript:;" class=" mui-icon mui-icon-right-nav mui-pull-right navigate-help nav-help"></a>-->
+    <a href="javascript:;" class=" mui-icon mui-icon-help nav-help"></a>
+</header>
+
 <div>
     <div class="content">
         <div class="wrapper wrapper-card">
@@ -19,10 +26,15 @@
         </div>
         <div class="wrapper">
             <h3 class="title t1">兑换权益卡数量</h3>
-            <div class="wrapper-count">
-                <button id="cardDecrease" class="btn btn-decrease" type="button"></button>
-                <input id="cardCount" class="cardcount" type="number" value="1">
-                <button id="cardAdd" class="btn btn-add" type="button"></button>
+            <!--<div class="wrapper-count">-->
+                <!--<button id="cardDecrease" class="btn btn-decrease" type="button"></button>-->
+                <!--<input id="cardCount" class="cardcount" type="number" value="1">-->
+                <!--<button id="cardAdd" class="btn btn-add" type="button"></button>-->
+            <!--</div>-->
+            <div class="mui-numbox" data-numbox-step='1' data-numbox-min='1'>
+                <button class="mui-btn mui-numbox-btn-minus" type="button"></button>
+                <input id="cardCount" class="mui-numbox-input cardcount" type="number" />
+                <button class="mui-btn mui-numbox-btn-plus" type="button"></button>
             </div>
         </div>
         <div class="wrapper">
@@ -34,6 +46,9 @@
                 <li>4.权益卡只限移动兑入积分兑换</li>
             </ul>
         </div>
+
+
+
     </div>
     <div class="footer">
         <div>消耗：<span id="consumeScore">-</span>移动兑入积分</div>
@@ -42,9 +57,15 @@
 </div>
 
 <script src="../js/browser.js?v=20171123"></script>
-<script src="../js/template.js"></script>
+<!--<script src="../js/template.js"></script>-->
+<script src="../js/zepto.min.js"></script>
+<script src="../js/md5.js"></script>
 <script src="../js/mui.js"></script>
 <script src="../js/common.js"></script>
+
+
+
+
 
 <script src="../js/rights_interest.js?v=20171123"></script>
 

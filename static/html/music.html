@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>背景音乐</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <script src="../js/zepto.min.js"></script>
+    <script src="../js/md5.js"></script>
+    <script src="../js/mui.js"></script>
+    <script src="../js/common.js"></script>
+    <style>
+        .music-btn{position: relative}
+        .music-btn.on{content:"";display:block;width:100%;height:100%;position: absolute;top: 0;left: 0;background: red;}
+    </style>
+</head>
+<body>
+<audio src="" loop id="bgmusic"></audio>
+<!--<audio src="../mp3/starto.mp3" loop id="bgmusic"></audio>-->
+<button type="button" id="music-btn" class="music-btn">音乐</button>
+<button type="button" id="music-btn-close">关闭音乐</button>
+<button type="button" id="music-btn-load">重新播放音乐</button>
+<img src="" id="img">
+
+<p id="test"></p>
+<script>
+
+
+    ajaxUtil.loadData({
+        type: 'get',
+        url: '/test/music',
+        onSuccess: function (data) {
+            console.log(data);
+            $("#test").text(data.respMsg);
+            $("#bgmusic").attr("src",data.musicUrl);
+            $("#img").attr("src",data.cardimg)
+        },
+        onError: function () {
+            mobileOperators = '';
+        }
+    });
+
+
+
+    (function () {
+        var music = {
+            isPlay: false,
+
+            init: function () {
+                this.eventMethods();
+            },
+            eventMethods: function () {
+                $('#bgmusic').on('canplay canplaythrough', function(){
+//                    $("#test").text("音乐加载完成lelelele！")
+                });
+                $("#music-btn").click(function () {
+                    alert($("#bgmusic").attr("src"))
+                    bgmusic.play();
+                    isPlay = true;
+                });
+                $("#music-btn-close").click(function () {
+                    bgmusic.pause();
+                    isPlay = false;
+                });
+                $("#music-btn-load").click(function () {
+                    $("#bgmusic").attr("autoplay",true);
+                    bgmusic.load();
+                    isPlay = true;
+                });
+            }
+        };
+
+        music.init();
+    })()
+</script>
+</body>
+</html>
