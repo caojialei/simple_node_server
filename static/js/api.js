@@ -1,7 +1,27 @@
 const express = require('express');
 const apiRoutes = express.Router();
+const readFile = require('./file');
+
+var file
+readFile.readFile(function(err,data){
+    if (err) {
+        console.error(err);
+    }
+
+    console.log(2222)
+    file = data
+});
 
 
+console.log(file)
+// apiRoutes.get('/file',function(req,res){
+//     readFile.readFile(function(err,data){
+//         if (err) {
+//             console.error(err);
+//         }
+//         res.send(data)
+//     })
+// });
 
 //getUserInfo
 apiRoutes.post('/pointgate/equityecard/list', (req,res) => {
@@ -60,8 +80,6 @@ apiRoutes.post('/pointgate/equityecard/exchange', (req,res) => {
         }
     )
 });
-
-
 
 //listpage
 apiRoutes.post('/pointgate/equityecard/listpage', (req,res) => {
@@ -233,13 +251,96 @@ apiRoutes.get('/pointgate/equityecard/changegiftstate', (req,res) => {
     )
 });
 
-apiRoutes.get('/test/music', (req,res) => {
+apiRoutes.post('/test/music', (req,res) => {
     res.json(
         {
             "respCode": "0000",
             "respMsg": "操作成功",
             "musicUrl": "http://localhost:8888/mp3/starto.mp3",
             "cardimg": "http://localhost:8888/img/ex_card01.png"
+        }
+    )
+});
+
+
+// personal-website
+// home
+apiRoutes.post('/website/articlelist', (req,res) => {
+    res.json(
+        {
+            "total": 8,
+            "pagesize": 5,
+            "data":[
+                {
+                    "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
+                    "commentsCount": 0,
+                    "authorname": "黄志鹏kira",
+                    "objectId": "11111",
+                    "content": "Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见",
+                    "title": "集合番@LinkedHashSet一文通（1.7版）",
+                    "createdAt": "2017-07-24T02:53:13.006Z",
+                    "updatedAt": "2018-03-27T03:18:35.528Z",
+                    "tags": [
+                        {
+                            "title": "Java",
+                        },
+                        {
+                            "title": "源码",
+                        }
+                    ],
+                },
+                {
+                    "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
+                    "commentsCount": 0,
+                    "authorname": "黄志鹏kira",
+                    "objectId": "111112",
+                    "content": "写缓冲区还可以通过批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，减少对内存总线的占用",
+                    "title": "并发番@Java内存模型&Volatile一文通（1.7版）",
+                    "createdAt": "2017-07-24T02:53:13.006Z",
+                    "updatedAt": "2018-03-27T03:18:35.528Z",
+                    "tags": [
+                        {
+                            "title": "并发",
+                        },
+                        {
+                            "title": "缓冲区",
+                        }
+                    ],
+                }
+            ]
+        }
+    )
+});
+
+// info
+apiRoutes.get('/website/authorinfo', (req,res) => {
+    res.json(
+        {
+            "respCode": "0000",
+            "respMsg": "操作成功",
+            "username":"kiraSally",
+            "selfDescription":"正儿八经的Java攻城狮一枚，但因媳妇缘故而对前端兴趣浓厚 . 笔者原创文章统一使用CmdMarkdown编写，以分享形式展示，希望看官们多多指导",
+            "community":[
+                {
+                    "a":"github",
+                    "url":"https://github.com/kiraGitHub"
+                },
+                {
+                    "a":"zhihu",
+                    "url":"https://www.zhihu.com/people/kira-49-60/activities"
+                }
+            ]
+        }
+    )
+});
+// articledetail
+apiRoutes.get('/website/articledetail', (req,res) => {
+    res.json(
+        {
+            "respCode": "0000",
+            "respMsg": "操作成功",
+            "author":" 黄志鹏kira",
+            "content":readFile
         }
     )
 });
