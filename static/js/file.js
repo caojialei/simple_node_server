@@ -1,7 +1,7 @@
 var fs = require("fs")
 
 exports.readFile = function(callback) {
-    fs.readFile('./static/md/css3.md', 'utf-8', function (err, data) {
+    fs.readFile('./static/md/hashMap.md', 'utf-8', function (err, data) {
         // 读取文件失败/错误
         if (err) {
             throw err;
