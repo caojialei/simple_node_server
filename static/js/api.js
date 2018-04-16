@@ -2,27 +2,6 @@ const express = require('express');
 const apiRoutes = express.Router();
 const readFile = require('./file');
 
-// var file
-// readFile.readFile(function(err,data){
-//     if (err) {
-//         console.error(err);
-//     }
-//
-//     console.log(2222)
-//     file = data
-// });
-//
-//
-// console.log(file)
-// apiRoutes.get('/file',function(req,res){
-//     readFile.readFile(function(err,data){
-//         if (err) {
-//             console.error(err);
-//         }
-//         res.send(data)
-//     })
-// });
-
 //getUserInfo
 apiRoutes.post('/pointgate/equityecard/list', (req,res) => {
 
@@ -297,7 +276,7 @@ apiRoutes.get('/website/articlelist', (req,res) => {
                     "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
                     "commentsCount": 0,
                     "author": "黄志鹏kira",
-                    "articleId": "111112",
+                    "articleId": "22222",
                     "content": "写缓冲区还可以通过批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，减少对内存总线的占用",
                     "articleTitle": "并发番@Java内存模型&Volatile一文通（1.7版）",
                     "createdAt": "2017-07-24T02:53:13.006Z",
@@ -315,7 +294,7 @@ apiRoutes.get('/website/articlelist', (req,res) => {
                     "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
                     "commentsCount": 0,
                     "author": "黄志鹏kira",
-                    "articleId": "11111",
+                    "articleId": "3333",
                     "content": "Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见",
                     "articleTitle": "集合番@LinkedHashSet一文通（1.7版）",
                     "createdAt": "2017-07-24T02:53:13.006Z",
@@ -333,7 +312,7 @@ apiRoutes.get('/website/articlelist', (req,res) => {
                     "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
                     "commentsCount": 0,
                     "author": "黄志鹏kira",
-                    "articleId": "111112",
+                    "articleId": "44444",
                     "content": "写缓冲区还可以通过批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，减少对内存总线的占用",
                     "articleTitle": "并发番@Java内存模型&Volatile一文通（1.7版）",
                     "createdAt": "2017-07-24T02:53:13.006Z",
@@ -351,7 +330,7 @@ apiRoutes.get('/website/articlelist', (req,res) => {
                     "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
                     "commentsCount": 0,
                     "author": "黄志鹏kira",
-                    "articleId": "111112",
+                    "articleId": "55555",
                     "content": "写缓冲区还可以通过批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，减少对内存总线的占用",
                     "articleTitle": "并发番@Java内存模型&Volatile一文通（1.7版）",
                     "createdAt": "2017-07-24T02:53:13.006Z",
@@ -404,7 +383,9 @@ apiRoutes.get('/website/articledetail', (req,res) => {
                 "respCode": "0000",
                 "respMsg": "操作成功",
                 "author": "黄志鹏kira",
+                "articleId": "1111",
                 "articleTitle": "并发番@AbstractQueuedSynchronizer一文",
+                "isFavorite": 1,
                 "content": data,
                 "createdAt": "2017-07-24T02:53:13.006Z",
                 "updatedAt": "2018-03-27T03:18:35.528Z",
@@ -498,6 +479,15 @@ apiRoutes.get('/website/articlecomments', (req,res) => {
                     ]
                 }
             ]
+        }
+    )
+});
+// article 文章评论提交
+apiRoutes.post('/website/doComment', (req,res) => {
+    res.json(
+        {
+            "respCode": "0000",
+            "respMsg": "请求成功"
         }
     )
 });
