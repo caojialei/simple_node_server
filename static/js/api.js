@@ -639,7 +639,7 @@ apiRoutes.post('/website/article/listArticle', (req, res) => {
 })
 
 // 获取文章详情
-apiRoutes.post('/website/article/getArticleDetail', (req, res) => {
+apiRoutes.get('/website/article/getArticleDetail', (req, res) => {
     res.json(
         {
             'respCode': 0,
@@ -683,7 +683,7 @@ apiRoutes.get('/website/category/listCategory', (req, res) => {
 })
 
 // 获取文章评论列表 todo 待修改
-apiRoutes.get('/website/comment/listArticleComments', (req, res) => {
+apiRoutes.post('/website/comment/listArticleComments', (req, res) => {
     res.json(
         {
             'respCode': 0,
