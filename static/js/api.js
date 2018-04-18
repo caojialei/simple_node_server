@@ -718,7 +718,7 @@ apiRoutes.get('/website/comment/listArticleComments', (req, res) => {
 })
 
 // info
-apiRoutes.get('/website/user/getAuthorDetail', (req, res) => {
+apiRoutes.get('/website/user/getAuthorInfo', (req, res) => {
     res.json(
         {
             'respCode': 0,
