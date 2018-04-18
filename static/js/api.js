@@ -250,7 +250,7 @@ apiRoutes.get('/website/articlelist', (req,res) => {
         {
             "respCode": "0000",
             "respMsg": "成功",
-            "pageCount": 8,
+            "pageCount": 36,
             "pagesize": 5,
             "pageNo": 1,
             "data":[
@@ -364,6 +364,32 @@ apiRoutes.get('/website/authorinfo', (req,res) => {
                 {
                     "name":"zhihu",
                     "url":"https://www.zhihu.com/people/kira-49-60/activities"
+                }
+            ]
+        }
+    )
+});
+// home 文章分类
+apiRoutes.get('/website/cataloglist', (req,res) => {
+    res.json(
+        {
+            "respCode": "0000",
+            "respMsg": "操作成功",
+            "data":[
+                {
+                    "name":"并发番",
+                    "count": 242,
+                    "id": 1111
+                },
+                {
+                    "name":"集合番",
+                    "count": 5,
+                    "id": 2222
+                },
+                {
+                    "name":"基础番",
+                    "count": 123,
+                    "id": 3333
                 }
             ]
         }
@@ -488,6 +514,92 @@ apiRoutes.post('/website/doComment', (req,res) => {
         {
             "respCode": "0000",
             "respMsg": "请求成功"
+        }
+    )
+});
+
+// about 留言列表
+apiRoutes.get('/website/messagelist', (req,res) => {
+    res.json(
+        {
+            "respMsg": "请求成功",
+            "total": 30,
+            "data": [
+                {
+                    "c_user_name": "萌萌",
+                    "c_id": "201801",
+                    "c_user_id": "170201",
+                    "c_content": "写的真好！值得学习",
+                    "c_quote":"待补充：划线评论",
+                    "createdCt":"2018-04-12 09:55:10",
+                    "likes_count": 4,
+                    "reply_list":[
+                        {
+                            "r_user_name":"小白菜",
+                            "r_c_user_name":"萌萌",
+                            "r_c_id": "201801",
+                            "r_id":"180412",
+                            "r_user_id":"180412",
+                            "r_content":"我也是这么觉得的",
+                            "createdRt":"2018-04-13 09:55:10"
+                        }
+                    ]
+                }
+            ]
+        }
+    )
+});
+
+//catalog
+// home 分类文章李彪
+apiRoutes.post('/website/catalogarticlelist', (req,res) => {
+    res.json(
+        {
+            "respCode": "0000",
+            "respMsg": "成功",
+            "pageCount": 28,
+            "pagesize": 5,
+            "pageNo": 1,
+            "catalogId": "1111",
+            "catalogName": "并发番",
+            "data":[
+                {
+                    "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
+                    "commentsCount": 0,
+                    "author": "黄志鹏kira",
+                    "articleId": "11111",
+                    "content": "Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见",
+                    "articleTitle": "并发番@LinkedHashSet一文通（1.7版）",
+                    "createdAt": "2017-07-24T02:53:13.006Z",
+                    "updatedAt": "2018-03-27T03:18:35.528Z",
+                    "tags": [
+                        {
+                            "title": "Java"
+                        },
+                        {
+                            "title": "源码"
+                        }
+                    ]
+                },
+                {
+                    "originalUrl": "https:\/\/www.zybuluo.com\/kiraSally\/note\/825758",
+                    "commentsCount": 0,
+                    "author": "黄志鹏kira",
+                    "articleId": "111112",
+                    "content": "写缓冲区还可以通过批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，减少对内存总线的占用",
+                    "articleTitle": "并发番@Java内存模型&Volatile一文通（1.7版）",
+                    "createdAt": "2017-07-24T02:53:13.006Z",
+                    "updatedAt": "2018-03-27T03:18:35.528Z",
+                    "tags": [
+                        {
+                            "title": "并发"
+                        },
+                        {
+                            "title": "缓冲区"
+                        }
+                    ]
+                }
+            ]
         }
     )
 });
