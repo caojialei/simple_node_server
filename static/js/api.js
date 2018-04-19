@@ -624,8 +624,8 @@ apiRoutes.post('/website/article/listArticle', (req, res) => {
                         'id': '11111',
                         'content': 'Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见',
                         'title': '集合番@LinkedHashSet一文通（1.7版）',
-                        'createTime': '2017-07-24T02:53:13.006Z',
-                        'updateTime': '2018-03-27T03:18:35.528Z',
+                        'createdAt': '2017-07-24T02:53:13.006Z',
+                        'updatedAt': '2018-03-27T03:18:35.528Z',
                         'tags': [
                             {
                                 'title': 'Java'
@@ -650,8 +650,8 @@ apiRoutes.get('/website/article/getArticleDetail', (req, res) => {
                 'title': '并发番@AbstractQueuedSynchronizer一文',
                 'isFavorite': 0,
                 'content': '> * 1.7采用数组+链表的结构，即使哈希函数取得再好，也很难达到元素百分百均匀分布',
-                'createTime': '2017-07-24T02:53:13.006Z',
-                'updateTime': '2018-03-27T03:18:35.528Z',
+                'createdAt': '2017-07-24T02:53:13.006Z',
+                'updatedAt': '2018-03-27T03:18:35.528Z',
                 'tags': [
                     {
                         'title': '并发'
