@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "marked": "^0.3.19",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.6"
   }
 }
