@@ -682,32 +682,32 @@ apiRoutes.get('/website/category/listCategory', (req, res) => {
     )
 })
 
-// 获取文章评论列表 todo 待修改
+// 获取文章评论列表
 apiRoutes.post('/website/comment/listArticleComments', (req, res) => {
     res.json(
         {
-            'respCode': 0,
-            'respMsg': '请求成功',
-            'data': {
-                'total': 30,
-                'commentList': [
+            "respCode": 0,
+            "respMsg": "请求成功",
+            "data": {
+                "total": 30,
+                "commentList": [
                     {
-                        'c_user_name': '萌萌',
-                        'c_id': '201801',
-                        'c_user_id': '170201',
-                        'c_content': '写的真好！值得学习',
-                        'c_quote': '待补充：划线评论',
-                        'createdCt': '2018-04-12 09:55:10',
-                        'likes_count': 4,
-                        'reply_list': [
+                        "id": "111",
+                        "userId": "222",
+                        "userName": "萌萌",
+                        "content": "写的真好！值得学习",
+                        "createdAt": "2018-04-12 09:55:10",
+                        "likeCounts": 4,
+                        "replyList": [
                             {
-                                'r_user_name': '小白菜',
-                                'r_c_user_name': '萌萌',
-                                'r_c_id': '201801',
-                                'r_id': '180412',
-                                'r_user_id': '180412',
-                                'r_content': '我也是这么觉得的',
-                                'createdRt': '2018-04-13 09:55:10'
+                                "fromReplyId": "小白菜",
+                                "replyType": "小白菜",
+                                "fromUserId": "小白菜",
+                                "fromUserName": "小白菜",
+                                "toUserId": "萌萌",
+                                "toUserName": "201801",
+                                "createdAt": "2018-04-13 09:55:10",
+                                "content": "我也是这么觉得的"
                             }
                         ]
                     }
