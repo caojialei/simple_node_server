@@ -452,19 +452,19 @@ apiRoutes.post('/website/comment/listArticleComments', (req, res) => {
                 "total": 30,
                 "commentList": [
                     {
-                        "id": "111",
-                        "userId": "222",
+                        "id": 111,
+                        "userId": 222,
                         "userName": "萌萌",
                         "content": "写的真好！值得学习",
                         "createdAt": "2018-04-12 09:55:10",
                         "likeCounts": 4,
                         "replyList": [
                             {
-                                "fromReplyId": "小白菜",
-                                "replyType": "小白菜",
-                                "fromUserId": "小白菜",
+                                "fromReplyId": 1,
+                                "replyType": 1,
+                                "fromUserId": 1,
                                 "fromUserName": "小白菜",
-                                "toUserId": "萌萌",
+                                "toUserId": 1,
                                 "toUserName": "201801",
                                 "createdAt": "2018-04-13 09:55:10",
                                 "content": "我也是这么觉得的"
