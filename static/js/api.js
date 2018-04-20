@@ -465,7 +465,7 @@ apiRoutes.post('/website/comment/listArticleComments', (req, res) => {
                                 "fromUserId": 1,
                                 "fromUserName": "小白菜",
                                 "toUserId": 1,
-                                "toUserName": "201801",
+                                "toUserName": "小白菜2",
                                 "createdAt": "2018-04-13 09:55:10",
                                 "content": "我也是这么觉得的"
                             }
