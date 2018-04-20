@@ -409,7 +409,10 @@ apiRoutes.get('/website/article/getArticleDetail', (req, res) => {
                 'id': '11111',
                 'title': '并发番@AbstractQueuedSynchronizer一文',
                 'isFavorite': 0,
-                'content': '> * 1.7采用数组+链表的结构，即使哈希函数取得再好，也很难达到元素百分百均匀分布',
+                'content': '> * 整理知识，学习笔记\n' +
+                '> * 发布日记，杂文，所见所想\n' +
+                '> * 撰写发布技术文稿（代码支持）\n' +
+                '> * 撰写发布学术论文（LaTeX 公式支持）\n',
                 'createdAt': '2017-07-24T02:53:13.006Z',
                 'updatedAt': '2018-03-27T03:18:35.528Z',
                 'tags': [
@@ -434,6 +437,41 @@ apiRoutes.get('/website/category/listCategory', (req, res) => {
                         'name': '并发番',
                         'articleCounts': 242,
                         'id': '111'
+                    }
+                ]
+
+            }
+        }
+    )
+})
+
+// 获取文章标签列表
+apiRoutes.get('/website/tag/listTag', (req, res) => {
+    res.json(
+        {
+            "respCode":1,
+            "respMsg":"success",
+            "data":{
+                "tagList":[
+                    {
+                        "id":1,
+                        "name":"设计模式"
+                    },
+                    {
+                        "id":2,
+                        "name":"Java"
+                    },
+                    {
+                        "id":3,
+                        "name":"MVVM"
+                    },
+                    {
+                        "id":4,
+                        "name":"源码分析"
+                    },
+                    {
+                        "id":5,
+                        "name":"开源框架"
                     }
                 ]
 
